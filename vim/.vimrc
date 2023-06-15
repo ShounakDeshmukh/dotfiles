@@ -108,9 +108,8 @@ endfor
 set laststatus=2
 
 set statusline=
-set statusline+=\  
 set statusline+=%1*
-set statusline+=%{StatuslineMode()}
+set statusline+=\ %{StatuslineMode()}
 set statusline+=%4*
 set statusline+=\ %n\ 
 set statusline+=%3*

@@ -26,18 +26,19 @@ configuration {
 }
 @theme "/dev/null"
 
+
 * {
-    bg-col:  #24273a;
-    bg-col-light: #24273a;
-    border-col: #8aadf4;
-    selected-col: #24273a;
-    blue: #8aadf4;
-    fg-col: #cad3f5;
-    fg-col2: #ed8796;
-    grey: #6e738d;
+    bg-col: #1e1e2e;
+    bg-col-light: #1e1e2e;
+    border-col: #89b4fa;
+    selected-col: #1e1e2e;
+    blue: #89b4fa;
+    fg-col: #cdd6f4;
+    fg-col2: #f38ba8;
+    grey: #6c7086;
 
     width: 600;
-    font: "FiraCode Nerd Font Mono 14";
+    font: "JetBrainsMono Nerd Font 14";
 }
 
 element-text, element-icon , mode-switcher {
@@ -48,7 +49,7 @@ element-text, element-icon , mode-switcher {
 window {
     border-radius: 7.5px 7.5px 7.5px 7.5px;
     height: 360px;
-    border: 4px;
+    border: 3px;
     border-color: @border-col;
     background-color: @bg-col;
 }
@@ -138,4 +139,3 @@ textbox {
     text-color: @blue;
     background-color: @bg-col-light;
 }
-
