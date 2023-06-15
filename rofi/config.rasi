@@ -1,6 +1,6 @@
 configuration {
 
-    terminal: "xfce4-terminal";
+    terminal: "alacritty";
     modi: "drun,run,window";
     icon-theme: "Papirus";
     show-icons: true;
