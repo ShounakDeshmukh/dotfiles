@@ -15,4 +15,5 @@ else
     alias lsa="ls -AC --group-directories-first -S"
 fi
 
+
 #. "/home/shooty/.wasmedge/env"
