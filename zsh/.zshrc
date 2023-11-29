@@ -15,5 +15,12 @@ else
     alias lsa="ls -AC --group-directories-first -S"
 fi
 
+if command -v bat &> /dev/null
+then
+    alias cat="bat --theme=base16-256"
+    alias catn="bat -p --theme=base16-256" 
+fi
+
+
 
 #. "/home/shooty/.wasmedge/env"
