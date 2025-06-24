@@ -1,0 +1,35 @@
+# ================================
+# CUSTOM IGNORE LIST (edit below)
+# ================================
+
+scripts
+.stowrc
+
+# ================================
+# BUILT-IN STOW IGNORE PATTERNS
+# ================================
+
+# Common version control directories
+^RCS$
+^CVS$
+^\.svn$
+^\.git$
+^\.hg$
+^_darcs$
+
+# Version control ignore files
+^\.gitignore$
+^\.gitmodules$
+^\.cvsignore$
+
+# Backup files
+.+~$
+^#.*#$
+^\.#.*$
+^.*\.bak$
+^.*\.orig$
+
+# Common documentation files
+^README.*$
+^LICENSE.*$
+^COPYING$
