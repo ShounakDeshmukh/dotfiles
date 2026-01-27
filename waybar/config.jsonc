@@ -36,7 +36,7 @@
 
   "clock": {
     "format": "{:%R} <span font_size='12pt'></span>",
-    "format-alt": "{:%A, %B %d, %Y} <span font_size='large'>󰃰</span>",
+    "format-alt": "{:%A, %B %d, %Y} <span font_size='12pt'>󰃰</span>",
     "tooltip-format": "<tt>{calendar}</tt>",
     "calendar": {
       "mode": "mon",

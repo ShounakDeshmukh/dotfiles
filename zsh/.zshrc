@@ -81,8 +81,8 @@ warn_missing() {
 # exa setup
 if command -v exa &> /dev/null; then
     alias ls="exa -lhB@ --icons --color=always --group-directories-first"
-    alias l="exa -alh --git --icons --group-directories-first"
-    alias ll="exa -lh --icons --group-directories-first"
+    alias ll="exa -alh --git --icons --group-directories-first"
+    alias l="exa -lh --icons --group-directories-first"
     alias la="exa -alh --icons --group-directories-first"
     alias lsa="exa -alh --git --icons --group-directories-first"
     alias lt="exa -T --icons --git -L 2"
@@ -91,11 +91,16 @@ if command -v exa &> /dev/null; then
 else
     warn_missing exa
     alias ls="ls -lh --color=auto"
-    alias l="ls -lah --color=auto"
-    alias ll="ls -lh --color=auto"
+    alias ll="ls -lah --color=auto"
+    alias l="ls -lh --color=auto"
     alias la="ls -lAh --color=auto"
     alias lsa="ls -AC --group-directories-first -S --color=auto"
 fi
+
+# Directory navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
 
 # bat setup
 if command -v bat &> /dev/null; then
@@ -104,6 +109,8 @@ if command -v bat &> /dev/null; then
 else
     warn_missing bat
 fi
+
+
 
 # fzf warning (optional)
 if ! command -v fzf &> /dev/null; then
