@@ -1,0 +1,27 @@
+#!/bin/bash
+
+cache_file="$HOME/.cache/wttr_cache.txt"
+
+if [ ! -f "$cache_file" ]; then
+	mkdir -p "$(dirname "$cache_file")"
+	touch "$cache_file"
+fi
+
+last_modified=$(stat -c %Y "$cache_file" 2>/dev/null || echo "0")
+current_date=$(date +%s)
+time_diff=$((current_date - last_modified))
+expiry_time=86400
+cached_data=$(<"$cache_file" 2>/dev/null)
+
+if [ $time_diff -lt $expiry_time ] && [ -n "$cached_data" ]; then
+	echo "$cached_data"
+	exit
+fi
+
+response=$(curl -s wttr.in?format=%c+%C+%t 2>/dev/null)
+if [ -n "$response" ]; then
+	echo "$response" >"$cache_file"
+	echo "$response"
+else
+	echo "$cached_data"
+fi

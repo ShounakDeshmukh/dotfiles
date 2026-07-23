@@ -23,9 +23,8 @@
 ################
 
 # See https://wiki.hyprland.org/Configuring/Monitors/
-monitor=,preferred,auto,auto
 monitor=eDP-1,preferred,auto,1
-
+monitor=,highres,auto,1
 
 ###################
 ### MY PROGRAMS ###
@@ -35,7 +34,7 @@ monitor=eDP-1,preferred,auto,1
 
 # Set programs that you use
 $terminal = alacritty
-$fileManager = dolphin
+$fileManager = nautilus
 $menu = wofi --show drun
 
 
@@ -59,6 +58,15 @@ exec-once = waybar & hyprpaper
 
 env = XCURSOR_SIZE,24
 env = HYPRCURSOR_SIZE,24
+env = GDK_BACKEND,wayland,x11,*
+env = QT_QPA_PLATFORM,wayland;xcb
+env = SDL_VIDEODRIVER,wayland
+env = CLUTTER_BACKEND,wayland
+env = QT_AUTO_SCREEN_SCALE_FACTOR,1
+env = QT_WAYLAND_DISABLE_WINDOWDECORATION,1
+env = QT_QPA_PLATFORMTHEME,qt5ct
+
+
 
 
 ###################
@@ -170,6 +178,19 @@ animations {
 # windowrule = bordersize 0, floating:0, onworkspace:f[1]
 # windowrule = rounding 0, floating:0, onworkspace:f[1]
 
+# Bind workspaces to monitors
+# 1-5 on laptop, 6-10 on external
+workspace = 1, monitor:eDP-1
+workspace = 2, monitor:eDP-1
+workspace = 3, monitor:eDP-1
+workspace = 4, monitor:eDP-1
+workspace = 5, monitor:eDP-1
+workspace = 6, monitor:HDMI-A-1
+workspace = 7, monitor:HDMI-A-1
+workspace = 8, monitor:HDMI-A-1
+workspace = 9, monitor:HDMI-A-1
+workspace = 10, monitor:HDMI-A-1
+
 # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
 dwindle {
     pseudotile = true # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
@@ -280,6 +301,9 @@ bind = $mainMod, mouse_up, workspace, e-1
 #REMOVE AFTER WAYBAR
 bind = $mainMod, W, exec, pkill waybar && waybar
 
+# Wlogout bind
+
+#bind = , XF86PowerOff, exec, sh -c 'pgrep -x wlogout >/dev/null || wlogout'
 
 
 # Move/resize windows with mainMod + LMB/RMB and dragging
@@ -306,6 +330,20 @@ bindl = , XF86AudioPrev, exec, playerctl previous
 
 # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
 # See https://wiki.hyprland.org/Configuring/Workspace-Rules/ for workspace rules
+
+# Bind workspaces 1-5 to main monitor (eDP-1)
+workspace = 1, monitor:eDP-1, default:true
+workspace = 2, monitor:eDP-1
+workspace = 3, monitor:eDP-1
+workspace = 4, monitor:eDP-1
+workspace = 5, monitor:eDP-1
+
+# Bind workspaces 6-10 to external monitor (if connected, falls back to eDP-1)
+workspace = 6, monitor:desc:, default:true
+workspace = 7, monitor:desc:
+workspace = 8, monitor:desc:
+workspace = 9, monitor:desc:
+workspace = 10, monitor:desc:
 
 # Example windowrule
 # windowrule = float,class:^(kitty)$,title:^(kitty)$

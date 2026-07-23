@@ -42,6 +42,10 @@ zinit light starship/starship
 # Custom starship config location
 export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
 
+#poetry comps
+
+zinit ice pick'poetry.zsh'
+zinit light sudosubin/zsh-poetry
 
 # Keybindings
 bindkey -e
@@ -104,8 +108,7 @@ alias ....='cd ../../..'
 
 # bat setup
 if command -v bat &> /dev/null; then
-    alias cat="bat --theme=base16-256"
-    alias catn="bat -p --theme=base16-256"
+    alias catn="bat --theme=base16-256"
 else
     warn_missing bat
 fi
