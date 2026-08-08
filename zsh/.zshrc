@@ -127,3 +127,4 @@ eval "$(fzf --zsh)"
 
 # Defaults 
 export EDITOR=nvim
+export PATH="$HOME/.local/bin:$PATH"
