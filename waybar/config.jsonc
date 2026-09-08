@@ -13,6 +13,7 @@
     "memory",
     "pulseaudio",
     "upower",
+    "power-profiles-daemon",
     "clock",
     "tray",
     "custom/lock",
@@ -139,6 +140,17 @@
     "format": "<span font_size='15pt'></span> {percentage}",
     "icon-size": 15,
     "hide-if-empty": true
+  },
+  "power-profiles-daemon": {
+    "format": "<span font_size='15pt'>{icon}</span>",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    }
   },
   "pulseaudio": {
     // "scroll-step": 1, // %, can be a float

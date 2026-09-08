@@ -111,6 +111,7 @@ tooltip {
 #custom-lock,
 #custom-power,
 #upower,
+#power-profiles-daemon,
 #cpu,
 #memory,
 #idle_inhibitor {
@@ -146,6 +147,11 @@ tooltip {
 
 #upower.unknown-status {
     color: @red;
+}
+
+#power-profiles-daemon {
+    color: @yellow;
+    border-radius: 0;
 }
 
 #backlight {

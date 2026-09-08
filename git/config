@@ -1,0 +1,25 @@
+[user]
+	name = Shounak Deshmukh
+	email = shounsach@gmail.com
+[core]
+	whitespace = error
+	preloadindex = true
+
+[advice]
+	addEmptyPathspec = false
+	pushNonFastForward = false
+	statusHints = false
+[init]
+	defaultBranch = main
+
+[status]
+	branch = true
+	showStash = true
+[diff]
+	context = 3
+	renames = copies
+
+[push]
+	autoSetupRemote = true
+	default = current
+	followTags = true
