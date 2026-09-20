@@ -40,7 +40,7 @@ zinit ice as"command" from"gh-r" \
 zinit light starship/starship
 
 # Custom starship config location
-export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
+export STARSHIP_CONFIG=${XDG_CONFIG_HOME:-$HOME/.config}/starship/starship.toml
 
 # Transient prompt: once a command is submitted, shrink its prompt to just the arrow.
 # The recursive-edit loop keeps Ctrl-C and Ctrl-D behaving normally.

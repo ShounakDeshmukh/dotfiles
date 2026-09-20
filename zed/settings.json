@@ -150,7 +150,6 @@
         },
         "clangd": {
             "binary": {
-                "path": "/usr/bin/clangd",
                 "arguments": [
                     "--background-index",
                     "--clang-tidy",
