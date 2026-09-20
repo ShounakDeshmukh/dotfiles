@@ -1,0 +1,20 @@
+# Reference: https://ghostty.org/docs/config/reference
+
+font-family = "0xProto Nerd Font Mono"
+font-size = 14
+
+# Follows the system light/dark setting, matching zed's theme mode.
+theme = light:Catppuccin Latte,dark:Catppuccin Mocha
+
+window-padding-x = 12
+window-padding-y = 8
+macos-titlebar-style = tabs
+window-save-state = always
+
+cursor-style = bar
+mouse-hide-while-typing = true
+copy-on-select = true
+
+# tmux binds M-H and M-L for window switching. Without this, macOS treats
+# option as a Unicode composer and those bindings never reach tmux.
+macos-option-as-alt = true

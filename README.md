@@ -21,7 +21,7 @@ Then open a new shell, start `tmux`, and hit `prefix + I` to install the tmux pl
 
 ```sh
 brew install stow tmux neovim fzf eza bat
-brew install --cask font-0xproto-nerd-font
+brew install --cask ghostty font-0xproto-nerd-font
 ```
 
 The Nerd Font is required: starship and tmux both render glyph icons, and zed is
@@ -39,6 +39,7 @@ Everything stows into `~/.config`:
 | `starship/`| `~/.config/starship`           |
 | `git/`     | `~/.config/git`                |
 | `zed/`     | `~/.config/zed`                |
+| `ghostty/` | `~/.config/ghostty`            |
 
 The repo is stowed as a **single** package, not one package per subdirectory -
 `stow */` would flatten `git/config` to `~/.config/config`. `install.sh` gets
