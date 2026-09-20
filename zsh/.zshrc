@@ -42,6 +42,35 @@ zinit light starship/starship
 # Custom starship config location
 export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
 
+# Transient prompt: once a command is submitted, shrink its prompt to just the arrow.
+# The recursive-edit loop keeps Ctrl-C and Ctrl-D behaving normally.
+zle-line-init() {
+  emulate -L zsh
+  [[ $CONTEXT == start ]] || return 0
+
+  while true; do
+    zle .recursive-edit
+    local -i ret=$?
+    [[ $ret == 0 && $KEYS == $'\4' ]] || break
+    [[ -o ignore_eof ]] || exit 0
+  done
+
+  local saved_prompt=$PROMPT saved_rprompt=$RPROMPT
+  PROMPT='%(?.%F{#a6e3a1}.%F{#f38ba8})%B❯%b%f '
+  RPROMPT=''
+  zle .reset-prompt
+  PROMPT=$saved_prompt
+  RPROMPT=$saved_rprompt
+
+  if (( ret )); then
+    zle .send-break
+  else
+    zle .accept-line
+  fi
+  return ret
+}
+zle -N zle-line-init
+
 #poetry comps
 
 zinit ice pick'poetry.zsh'
