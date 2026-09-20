@@ -1,3 +1,6 @@
+# Keep PATH free of duplicates; .zshrc re-runs in every nested shell.
+typeset -U path PATH
+
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -23,6 +26,9 @@ zinit light Aloxaf/fzf-tab
 
 
 # Load completions
+if [[ -n $HOMEBREW_PREFIX && -d $HOMEBREW_PREFIX/share/zsh/site-functions ]]; then
+    fpath=($HOMEBREW_PREFIX/share/zsh/site-functions $fpath)
+fi
 autoload -Uz compinit && compinit
 
 zinit cdreplay -q
@@ -99,7 +105,7 @@ setopt hist_find_no_dups
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -G $realpath'
 
 
 # Aliases
@@ -108,26 +114,33 @@ alias cls='clear'
 
 # Function to warn about missing commands
 warn_missing() {
-  print -P "%F{red}⚠️  Warning: '$1' is not installed. Some features may not work.%f"
+  print -P "%F{red}Warning: '$1' is not installed. Some features may not work.%f"
 }
 
-# exa setup
-if command -v exa &> /dev/null; then
-    alias ls="exa -lhB@ --icons --color=always --group-directories-first"
-    alias ll="exa -alh --git --icons --group-directories-first"
-    alias l="exa -lh --icons --group-directories-first"
-    alias la="exa -alh --icons --group-directories-first"
-    alias lsa="exa -alh --git --icons --group-directories-first"
-    alias lt="exa -T --icons --git -L 2"
-    alias lsd="exa -lD --icons"
-    alias lst="exa -l --sort=modified --icons"
+# eza/exa setup; eza is the maintained fork and what Homebrew ships.
+if command -v eza &> /dev/null; then
+    ls_bin=eza
+elif command -v exa &> /dev/null; then
+    ls_bin=exa
+fi
+
+if [[ -n ${ls_bin-} ]]; then
+    alias ls="$ls_bin -lhB@ --icons --color=always --group-directories-first"
+    alias ll="$ls_bin -alh --git --icons --group-directories-first"
+    alias l="$ls_bin -lh --icons --group-directories-first"
+    alias la="$ls_bin -alh --icons --group-directories-first"
+    alias lsa="$ls_bin -alh --git --icons --group-directories-first"
+    alias lt="$ls_bin -T --icons --git -L 2"
+    alias lsd="$ls_bin -lD --icons"
+    alias lst="$ls_bin -l --sort=modified --icons"
+    unset ls_bin
 else
-    warn_missing exa
-    alias ls="ls -lh --color=auto"
-    alias ll="ls -lah --color=auto"
-    alias l="ls -lh --color=auto"
-    alias la="ls -lAh --color=auto"
-    alias lsa="ls -AC --group-directories-first -S --color=auto"
+    warn_missing eza
+    alias ls="ls -lhG"
+    alias ll="ls -lahG"
+    alias l="ls -lhG"
+    alias la="ls -lAhG"
+    alias lsa="ls -ACSG"
 fi
 
 # Directory navigation
@@ -144,14 +157,12 @@ fi
 
 
 
-# fzf warning (optional)
-if ! command -v fzf &> /dev/null; then
+# Shell integrations
+if command -v fzf &> /dev/null; then
+    eval "$(fzf --zsh)"
+else
     warn_missing fzf
 fi
-
-
-# Shell integrations
-eval "$(fzf --zsh)"
 
 
 # Defaults 

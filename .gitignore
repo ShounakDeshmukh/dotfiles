@@ -1,3 +1,6 @@
 .zcompdump
 
 tmux/plugins
+
+.DS_Store
+.claude

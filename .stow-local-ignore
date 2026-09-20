@@ -3,6 +3,7 @@
 # ================================
 
 .stowrc
+install.sh
 
 # ================================
 # BUILT-IN STOW IGNORE PATTERNS
